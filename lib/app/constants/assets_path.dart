@@ -11,5 +11,6 @@ class Font {
 class ImagePath {
   static const _path = "assets/images";
 
-  static const background = "$_path/background.png";
+  static const background = "$_path/backgroundimg.png";
+  static const logo = "$_path/darkshadowlogo.png";
 }
