@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_api_jwt/app/ui/async_button.dart';
 import 'package:flutter_api_jwt/app/utils/helper/app_helper.dart';
 
-class SharedButton extends StatelessWidget {
-  const SharedButton(
+class SharedAsyncButton extends StatelessWidget {
+  const SharedAsyncButton(
       {required this.isLoading,
       required this.onPressed,
       required this.text,

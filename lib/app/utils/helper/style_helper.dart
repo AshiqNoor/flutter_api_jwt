@@ -14,6 +14,11 @@ const titleText = TextStyle(
   fontSize: 21,
   fontWeight: FontWeight.w700,
 );
+const subtitleText = TextStyle(
+  color: blackCOLOR,
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+);
 const headerText = TextStyle(
   color: blackCOLOR,
   fontSize: 28,
@@ -25,7 +30,7 @@ const tabText = TextStyle(
 );
 const linksText = TextStyle(
   color: blackCOLOR,
-  fontSize: 14,
+  fontSize: 15,
   fontWeight: FontWeight.w700,
 );
 const navText = TextStyle(

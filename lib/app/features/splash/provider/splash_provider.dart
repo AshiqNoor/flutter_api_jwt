@@ -7,7 +7,7 @@ class SplashProvider extends ChangeNotifier {
   void validateUser() async {
     // isLoading = false;
     // notifyListeners();
-    // await Future.delayed(const Duration(milliseconds: 200));
+    await Future.delayed(const Duration(milliseconds: 500));
     // if (auth.isLogin) {
     //   await auth.reload();
 
