@@ -9,7 +9,11 @@ import 'package:flutter_api_jwt/app/share_components/text_field/header_text.dart
 import 'package:flutter_api_jwt/app/share_components/text_field/shared_text_button.dart';
 import 'package:flutter_api_jwt/app/share_components/text_field/shared_text_field.dart';
 import 'package:flutter_api_jwt/app/share_components/text_field/sharedasync_button.dart';
+import 'package:flutter_api_jwt/app/ui/ui_utils.dart';
 import 'package:flutter_api_jwt/app/utils/helper/app_helper.dart';
+import 'package:flutter_api_jwt/app/utils/mixins/app_mixins.dart';
+import 'package:flutter_api_jwt/app/utils/services/service.dart';
+import 'package:provider/provider.dart';
 
 part '../../provider/sign_up_provider.dart';
 part '../../views/component/term_condition_button.dart';
@@ -68,47 +72,76 @@ class SignUpScreen extends StatelessWidget {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(20),
-                                child: Column(
-                                  children: [
-                                    _buildTitle(),
-                                    const SizedBox(height: 20),
-                                    _usernameField(),
-                                    const SizedBox(height: 10),
-                                    _emailField(),
-                                    const SizedBox(height: 10),
-                                    _passwordField(),
-                                    const SizedBox(height: 10),
-                                    _confirmPasswordField(),
-                                    const SizedBox(height: 20),
-                                    _TermConditionButton(
-                                      onPressedPrivacyPolicy: () => {},
-                                      onPressedTerms: () {},
-                                    ),
-                                    const SizedBox(height: 20),
-                                    SharedAsyncButton(
-                                      isLoading: false,
-                                      onPressed: () => {},
-                                      text: 'Continue',
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "Already have a account?",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .caption
-                                              ?.copyWith(fontSize: 14),
+                                child: Consumer<SignUpProvide>(
+                                    builder: (context, c, _) {
+                                  return Column(
+                                    children: [
+                                      _buildTitle(),
+                                      const SizedBox(height: 20),
+                                      ShareTextField(
+                                        controller: c.username,
+                                        hintext: 'Username',
+                                        icon: const Icon(Icons.person),
+                                        inputType: TextInputType.name,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      _emailField(),
+                                      const SizedBox(height: 10),
+                                      ShareTextField(
+                                        controller: c.password,
+                                        sicon: const Icon(
+                                          Icons.remove_red_eye_rounded,
                                         ),
-                                        SharedTextButton(
-                                          onPressed: () => {Pages.goToSignIn()},
-                                          text: 'Sign In',
+                                        maxlength: 6,
+                                        isobscure: true,
+                                        hintext: 'Password',
+                                        icon: const Icon(Icons.lock),
+                                        inputType: TextInputType.name,
+                                      ),
+                                      const SizedBox(height: 10),
+                                      ShareTextField(
+                                        controller: c.confirmpassword,
+                                        sicon: const Icon(
+                                          Icons.remove_red_eye_rounded,
                                         ),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                        maxlength: 6,
+                                        isobscure: true,
+                                        hintext: 'Confirm Password',
+                                        icon: const Icon(Icons.lock),
+                                        inputType: TextInputType.name,
+                                      ),
+                                      const SizedBox(height: 20),
+                                      _TermConditionButton(
+                                        onPressedPrivacyPolicy: () => {},
+                                        onPressedTerms: () {},
+                                      ),
+                                      const SizedBox(height: 20),
+                                      SharedAsyncButton(
+                                        isLoading: c.isLoading,
+                                        onPressed: () => {c.sigUp()},
+                                        text: 'Continue',
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Already have a account?",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .caption
+                                                ?.copyWith(fontSize: 14),
+                                          ),
+                                          SharedTextButton(
+                                            onPressed: () =>
+                                                {Pages.goToSignIn()},
+                                            text: 'Sign In',
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  );
+                                }),
                               ),
                             ),
                           ),
@@ -130,52 +163,15 @@ class SignUpScreen extends StatelessWidget {
       ],
     ));
   }
+}
 
-  ShareTextField _confirmPasswordField() {
-    return const ShareTextField(
-      //controller: controller,
-      sicon: Icon(
-        Icons.remove_red_eye_rounded,
-      ),
-      maxlength: 6,
-      isobscure: true,
-      hintext: 'Confirm Password',
-      icon: Icon(Icons.lock),
-      inputType: TextInputType.name,
-    );
-  }
-
-  ShareTextField _passwordField() {
-    return const ShareTextField(
-      //controller: controller,
-      sicon: Icon(
-        Icons.remove_red_eye_rounded,
-      ),
-      maxlength: 6,
-      isobscure: true,
-      hintext: 'Password',
-      icon: Icon(Icons.lock),
-      inputType: TextInputType.name,
-    );
-  }
-
-  ShareTextField _emailField() {
-    return const ShareTextField(
-      //controller: controller,
-      hintext: 'Email',
-      icon: Icon(Icons.email),
-      inputType: TextInputType.emailAddress,
-    );
-  }
-
-  ShareTextField _usernameField() {
-    return const ShareTextField(
-      //controller: controller,
-      hintext: 'Username',
-      icon: Icon(Icons.person),
-      inputType: TextInputType.name,
-    );
-  }
+ShareTextField _emailField() {
+  return const ShareTextField(
+    //controller: controller,
+    hintext: 'Email',
+    icon: Icon(Icons.email),
+    inputType: TextInputType.emailAddress,
+  );
 }
 
 Widget _buildTitle() {

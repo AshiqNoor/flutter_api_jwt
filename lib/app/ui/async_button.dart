@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'ui_utils.dart';
 
 class AsyncButton extends StatelessWidget {
   const AsyncButton({

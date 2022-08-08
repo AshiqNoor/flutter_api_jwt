@@ -15,13 +15,13 @@ class UserProfileModel {
 
   final String message;
   final String authorization;
-  final List<Stock> data;
+  final List<Pdata> data;
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) =>
       UserProfileModel(
         message: json["message"],
         authorization: json["Authorization"],
-        data: List<Stock>.from(json["data"].map((x) => Stock.fromJson(x))),
+        data: List<Pdata>.from(json["data"].map((x) => Pdata.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -31,8 +31,8 @@ class UserProfileModel {
       };
 }
 
-class Stock {
-  Stock({
+class Pdata {
+  Pdata({
     required this.pid,
     required this.pname,
     required this.pcat,
@@ -48,21 +48,21 @@ class Stock {
     required this.pbarcode,
   });
 
-  final int pid;
-  final String pname;
-  final String pcat;
-  final String psize;
-  final String punit;
-  final int pqty;
-  final int pprice;
-  final int psprice;
-  final String pcode;
-  final String psupp;
-  final DateTime pdate;
-  final String pstatus;
-  final String pbarcode;
+  final int? pid;
+  final String? pname;
+  final String? pcat;
+  final String? psize;
+  final String? punit;
+  final int? pqty;
+  final int? pprice;
+  final int? psprice;
+  final String? pcode;
+  final String? psupp;
+  final String? pdate;
+  final String? pstatus;
+  final String? pbarcode;
 
-  factory Stock.fromJson(Map<String, dynamic> json) => Stock(
+  factory Pdata.fromJson(Map<String, dynamic> json) => Pdata(
         pid: json["pid"],
         pname: json["pname"],
         pcat: json["pcat"],
@@ -73,7 +73,7 @@ class Stock {
         psprice: json["psprice"],
         pcode: json["pcode"],
         psupp: json["psupp"],
-        pdate: DateTime.parse(json["pdate"]),
+        pdate: json["pdate"],
         pstatus: json["pstatus"],
         pbarcode: json["pbarcode"],
       );
@@ -89,7 +89,7 @@ class Stock {
         "psprice": psprice,
         "pcode": pcode,
         "psupp": psupp,
-        "pdate": pdate.toIso8601String(),
+        "pdate": pdate,
         "pstatus": pstatus,
         "pbarcode": pbarcode,
       };

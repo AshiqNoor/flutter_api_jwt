@@ -20,12 +20,21 @@ mixin ValidatorMixin {
   String? isValidPassword(String? value) {
     if (value == null || value.trim().isEmpty) {
       return "Password is required";
-    } else if (value.length > 10 || value.length < 6) {
-      return "Password at least 6-10 character";
+    } else if (value.length > 10 || value.length < 4) {
+      return "Password at least 4-10 character";
     } else if (value.split(" ").length > 1) {
       return "Invalid Password";
     }
 
+    return null;
+  }
+
+  String? isValidConfirmPassword(String? value, String? value2) {
+    if (value2 == null || value2.trim().isEmpty) {
+      return "Confirm Password is required";
+    } else if (value != value2) {
+      return "Password not Match";
+    }
     return null;
   }
 

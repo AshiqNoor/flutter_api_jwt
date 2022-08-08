@@ -29,16 +29,16 @@ class RegisterResModel {
 
 class Data {
   Data({
-    required this.message,
+    this.message,
   });
 
-  final String message;
+  final String? message;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
-        "message": message,
+        "message": message!,
       };
 }

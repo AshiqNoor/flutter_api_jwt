@@ -27,16 +27,16 @@ class LoginResModel {
 
 class Data {
   Data({
-    required this.token,
+    this.token,
   });
 
-  final String token;
+  final String? token;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         token: json["token"],
       );
 
   Map<String, dynamic> toJson() => {
-        "token": token,
+        "token": token!,
       };
 }
