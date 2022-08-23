@@ -1,13 +1,4 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_api_jwt/app/config/routes/routing.dart';
-import 'package:flutter_api_jwt/app/constants/app_constants.dart';
-import 'package:flutter_api_jwt/app/ui/ui_utils.dart';
-import 'package:flutter_api_jwt/app/utils/services/service.dart';
-import 'package:provider/provider.dart';
-part '../../provider/dashboard_provider.dart';
-part '../../model/user_profile_model.dart';
+part of dashboard;
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -43,7 +34,7 @@ class DashboardScreen extends StatelessWidget {
                   },
                   child: const Text("Refresh")),
               Visibility(
-                //visible: c.data2.isNotEmpty,
+                //visible: c.data.isNotEmpty,
                 child: Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),

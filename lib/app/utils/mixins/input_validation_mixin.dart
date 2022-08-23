@@ -1,5 +1,4 @@
-// part of 'app_mixins.dart';
-part of app_mixins;
+part of mixins;
 
 /// use this mixin for all form field
 mixin ValidatorMixin {

@@ -1,4 +1,4 @@
-part of '../routing.dart';
+part of routes;
 
 class Pages {
   static void goToSplash() =>

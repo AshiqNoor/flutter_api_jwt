@@ -1,4 +1,4 @@
-part of '../views/screens/sign_up_screen.dart';
+part of sign_up;
 
 RegisterReqModel registerReqModelFromJson(String str) =>
     RegisterReqModel.fromJson(json.decode(str));

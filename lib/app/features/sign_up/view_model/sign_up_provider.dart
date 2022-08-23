@@ -1,11 +1,6 @@
-part of '../views/screens/sign_up_screen.dart';
+part of sign_up;
 
-class SignUpProvide extends ChangeNotifier with ValidatorMixin {
-  final username = TextEditingController();
-  final password = TextEditingController();
-  final confirmpassword = TextEditingController();
-  bool isLoading = false;
-
+class SignUpProvide extends BaseProvider with ValidatorMixin {
   void sigUp() async {
     String? usernameError = isValidName(username.text);
     String? passwordError = isValidPassword(password.text);
@@ -24,20 +19,17 @@ class SignUpProvide extends ChangeNotifier with ValidatorMixin {
         username: username.text,
         password: password.text,
       );
-      await RestApi.register(reqModel).then((resModel) {
-        isLoading = false;
-        notifyListeners();
-        if (resModel.data.message != null) {
-          AppSnackbar.showMessage(resModel.data.message);
-          Pages.goToSignIn();
-        } else {
-          isLoading = false;
-          notifyListeners();
-          AppSnackbar.showMessage(resModel.message);
-        }
-      });
+      RegisterResModel resmodel = await SignUpRepo().fetchData(reqModel);
       isLoading = false;
       notifyListeners();
+      if (resmodel.data.message != null) {
+        AppSnackbar.showMessage(resmodel.message);
+        Pages.goToSignIn();
+      } else {
+        isLoading = false;
+        notifyListeners();
+        AppSnackbar.showMessage(resmodel.message);
+      }
     }
     isLoading = false;
     notifyListeners();

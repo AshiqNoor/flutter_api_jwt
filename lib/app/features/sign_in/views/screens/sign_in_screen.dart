@@ -1,21 +1,4 @@
-import 'dart:convert';
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_api_jwt/app/config/routes/routing.dart';
-import 'package:flutter_api_jwt/app/constants/app_constants.dart';
-import 'package:flutter_api_jwt/app/share_components/text_field/header_text.dart';
-import 'package:flutter_api_jwt/app/share_components/text_field/shared_text_button.dart';
-import 'package:flutter_api_jwt/app/share_components/text_field/shared_text_field.dart';
-import 'package:flutter_api_jwt/app/share_components/text_field/sharedasync_button.dart';
-import 'package:flutter_api_jwt/app/ui/ui_utils.dart';
-import 'package:flutter_api_jwt/app/utils/mixins/app_mixins.dart';
-import 'package:flutter_api_jwt/app/utils/services/service.dart';
-import 'package:provider/provider.dart';
-
-part '../../provider/sign_in_provider.dart';
-part '../../model/sign_in_req_model.dart';
-part "../../model/sign_in_res_model.dart";
+part of sign_in;
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -75,6 +58,13 @@ class SignInScreen extends StatelessWidget {
                                     const SizedBox(height: 20),
                                     ShareTextField(
                                       controller: c.username,
+                                      autofocus: c.isAutoFocus,
+                                      focusnode: c.usernameFocusNode,
+                                      onSubmitted: (value) =>
+                                          FieldFocusNode.fieldFocusChange(
+                                              context,
+                                              c.usernameFocusNode,
+                                              c.passwordFocusNode),
                                       hintext: 'Username',
                                       icon: const Icon(Icons.person),
                                       inputType: TextInputType.name,
@@ -82,11 +72,19 @@ class SignInScreen extends StatelessWidget {
                                     const SizedBox(height: 10),
                                     ShareTextField(
                                       controller: c.password,
-                                      sicon: const Icon(
-                                        Icons.remove_red_eye_rounded,
+                                      focusnode: c.passwordFocusNode,
+                                      sicon: InkWell(
+                                        onTap: () {
+                                          c.obsecure();
+                                        },
+                                        child: Icon(
+                                          c.isObscure
+                                              ? Icons.visibility_off_rounded
+                                              : Icons.visibility,
+                                        ),
                                       ),
                                       maxlength: 6,
-                                      isobscure: true,
+                                      isobscure: c.isObscure,
                                       hintext: 'Password',
                                       icon: const Icon(Icons.lock),
                                       inputType: TextInputType.name,
@@ -102,7 +100,7 @@ class SignInScreen extends StatelessWidget {
                                     SharedAsyncButton(
                                       isLoading: c.isLoading,
                                       onPressed: () => {
-                                        c.sigIn(),
+                                        c.signIn(),
                                       },
                                       text: 'Sign In',
                                     ),

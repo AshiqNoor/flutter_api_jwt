@@ -1,4 +1,4 @@
-part of '../service.dart';
+part of services;
 
 class RestApi {
   static final client = http.Client();
@@ -62,9 +62,9 @@ class RestApi {
         var response = await client.get(Uri.parse(url), headers: reqheaders);
 
         if (response.statusCode == 200) {
-          return userProfileModelFromJson(response.body);
+          return userProfileResModelFromJson(response.body);
         } else if (response.statusCode == 403) {
-          return userProfileModelFromJson(response.body);
+          return userProfileResModelFromJson(response.body);
         }
       }
     } catch (e) {

@@ -1,11 +1,7 @@
-part of '../views/splash_screen.dart';
+part of splash;
 
 class SplashProvider extends ChangeNotifier {
-  bool isLoading = true;
-
   void validateUser() async {
-    // isLoading = false;
-    // notifyListeners();
     await Future.delayed(const Duration(milliseconds: 500));
     bool result = await SharedService.isLoggedIn();
     if (result) {

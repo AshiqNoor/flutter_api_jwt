@@ -1,4 +1,4 @@
-part of '../routing.dart';
+part of routes;
 
 class Routes {
   static const splash = _Paths.splash;

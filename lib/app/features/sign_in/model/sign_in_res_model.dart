@@ -1,4 +1,4 @@
-part of '../views/screens/sign_in_screen.dart';
+part of sign_in;
 
 LoginResModel loginResModelFromJson(String str) =>
     LoginResModel.fromJson(json.decode(str));

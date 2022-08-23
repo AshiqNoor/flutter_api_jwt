@@ -1,32 +1,29 @@
-part of '../views/screens/dashboard_screen.dart';
+part of dashboard;
 
-UserProfileModel userProfileModelFromJson(String str) =>
-    UserProfileModel.fromJson(json.decode(str));
+UserProfileResModel userProfileResModelFromJson(String str) =>
+    UserProfileResModel.fromJson(json.decode(str));
 
-String userProfileModelToJson(UserProfileModel data) =>
+String userProfileResModelToJson(UserProfileResModel data) =>
     json.encode(data.toJson());
 
-class UserProfileModel {
-  UserProfileModel({
+class UserProfileResModel {
+  UserProfileResModel({
     required this.message,
-    required this.authorization,
     required this.data,
   });
 
   final String message;
-  final String authorization;
+
   final List<Pdata> data;
 
-  factory UserProfileModel.fromJson(Map<String, dynamic> json) =>
-      UserProfileModel(
+  factory UserProfileResModel.fromJson(Map<String, dynamic> json) =>
+      UserProfileResModel(
         message: json["message"],
-        authorization: json["Authorization"],
         data: List<Pdata>.from(json["data"].map((x) => Pdata.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "message": message,
-        "Authorization": authorization,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }

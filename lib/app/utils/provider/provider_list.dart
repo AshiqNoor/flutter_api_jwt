@@ -1,5 +1,4 @@
-// part of 'app_mixins.dart';
-part of app_mixins;
+part of provider;
 
 List<SingleChildWidget> provider = [
   ChangeNotifierProvider<SplashProvider>(create: (_) => SplashProvider()),

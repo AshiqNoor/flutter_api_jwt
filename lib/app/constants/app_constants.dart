@@ -1,6 +1,6 @@
-part 'assets_path.dart';
-part 'api_path.dart';
+part of constants;
 
 class AppConstant {
   static const token = "login_details";
+  static const timeOutDuration = 30;
 }

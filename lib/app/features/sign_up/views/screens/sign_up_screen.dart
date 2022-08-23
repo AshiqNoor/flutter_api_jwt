@@ -1,24 +1,4 @@
-import 'dart:convert';
-import 'dart:ui';
-
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_api_jwt/app/config/routes/routing.dart';
-import 'package:flutter_api_jwt/app/constants/app_constants.dart';
-import 'package:flutter_api_jwt/app/share_components/text_field/header_text.dart';
-import 'package:flutter_api_jwt/app/share_components/text_field/shared_text_button.dart';
-import 'package:flutter_api_jwt/app/share_components/text_field/shared_text_field.dart';
-import 'package:flutter_api_jwt/app/share_components/text_field/sharedasync_button.dart';
-import 'package:flutter_api_jwt/app/ui/ui_utils.dart';
-import 'package:flutter_api_jwt/app/utils/helper/app_helper.dart';
-import 'package:flutter_api_jwt/app/utils/mixins/app_mixins.dart';
-import 'package:flutter_api_jwt/app/utils/services/service.dart';
-import 'package:provider/provider.dart';
-
-part '../../provider/sign_up_provider.dart';
-part '../../views/component/term_condition_button.dart';
-part '../../model/sign_up_req_model.dart';
-part '../../model/sign_up_res_model.dart';
+part of sign_up;
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -80,20 +60,53 @@ class SignUpScreen extends StatelessWidget {
                                       const SizedBox(height: 20),
                                       ShareTextField(
                                         controller: c.username,
+                                        focusnode: c.usernameFocusNode,
+                                        onSubmitted: (value) {
+                                          FieldFocusNode.fieldFocusChange(
+                                              context,
+                                              c.usernameFocusNode,
+                                              c.emailFocusNode);
+                                        },
                                         hintext: 'Username',
                                         icon: const Icon(Icons.person),
                                         inputType: TextInputType.name,
                                       ),
                                       const SizedBox(height: 10),
-                                      _emailField(),
+                                      ShareTextField(
+                                        controller: c.email,
+                                        focusnode: c.emailFocusNode,
+                                        onSubmitted: (value) {
+                                          FieldFocusNode.fieldFocusChange(
+                                              context,
+                                              c.emailFocusNode,
+                                              c.passwordFocusNode);
+                                        },
+                                        hintext: 'Email',
+                                        icon: const Icon(Icons.email),
+                                        inputType: TextInputType.emailAddress,
+                                      ),
                                       const SizedBox(height: 10),
                                       ShareTextField(
                                         controller: c.password,
-                                        sicon: const Icon(
-                                          Icons.remove_red_eye_rounded,
+                                        focusnode: c.passwordFocusNode,
+                                        sicon: InkWell(
+                                          onTap: () {
+                                            c.obsecure();
+                                          },
+                                          child: Icon(
+                                            c.isObscure
+                                                ? Icons.visibility_off_rounded
+                                                : Icons.visibility,
+                                          ),
                                         ),
+                                        onSubmitted: (value) {
+                                          FieldFocusNode.fieldFocusChange(
+                                              context,
+                                              c.passwordFocusNode,
+                                              c.confirmpasswordFocusNode);
+                                        },
                                         maxlength: 6,
-                                        isobscure: true,
+                                        isobscure: c.isObscure,
                                         hintext: 'Password',
                                         icon: const Icon(Icons.lock),
                                         inputType: TextInputType.name,
@@ -101,11 +114,19 @@ class SignUpScreen extends StatelessWidget {
                                       const SizedBox(height: 10),
                                       ShareTextField(
                                         controller: c.confirmpassword,
-                                        sicon: const Icon(
-                                          Icons.remove_red_eye_rounded,
+                                        focusnode: c.confirmpasswordFocusNode,
+                                        sicon: InkWell(
+                                          onTap: () {
+                                            c.obsecure();
+                                          },
+                                          child: Icon(
+                                            c.isObscure
+                                                ? Icons.visibility_off_rounded
+                                                : Icons.visibility,
+                                          ),
                                         ),
                                         maxlength: 6,
-                                        isobscure: true,
+                                        isobscure: c.isObscure,
                                         hintext: 'Confirm Password',
                                         icon: const Icon(Icons.lock),
                                         inputType: TextInputType.name,
@@ -163,15 +184,6 @@ class SignUpScreen extends StatelessWidget {
       ],
     ));
   }
-}
-
-ShareTextField _emailField() {
-  return const ShareTextField(
-    //controller: controller,
-    hintext: 'Email',
-    icon: Icon(Icons.email),
-    inputType: TextInputType.emailAddress,
-  );
 }
 
 Widget _buildTitle() {

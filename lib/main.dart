@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api_jwt/app/config/routes/routing.dart';
-import 'package:flutter_api_jwt/app/config/thrmes/app_theme.dart';
-import 'package:flutter_api_jwt/app/utils/mixins/app_mixins.dart';
+import 'package:flutter_api_jwt/app/config/routes/routes_library.dart';
+import 'package:flutter_api_jwt/app/config/thrmes/themes_library.dart';
+import 'package:flutter_api_jwt/app/utils/provider/provider_library.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

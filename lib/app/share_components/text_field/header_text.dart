@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_api_jwt/app/utils/helper/app_helper.dart';
+part of shared_components;
 
 class HeaderText extends StatelessWidget {
   const HeaderText(this.text, {Key? key}) : super(key: key);

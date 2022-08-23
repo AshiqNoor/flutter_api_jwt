@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_api_jwt/app/config/routes/routing.dart';
-import 'package:flutter_api_jwt/app/constants/app_constants.dart';
-import 'package:flutter_api_jwt/app/utils/services/service.dart';
-import 'package:provider/provider.dart';
-part '../provider/splash_provider.dart';
+part of splash;
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);

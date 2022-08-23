@@ -1,10 +1,11 @@
-library ui_utils;
+library ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_api_jwt/main.dart';
 
 part 'async_button.dart';
 part 'app_snackbar.dart';
+part 'focus_node.dart';
 
 // in this file focused on adding extension for some widget
 

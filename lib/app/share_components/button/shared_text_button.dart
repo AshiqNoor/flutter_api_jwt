@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_api_jwt/app/utils/helper/app_helper.dart';
+part of shared_components;
 
 class SharedTextButton extends StatelessWidget {
   const SharedTextButton(

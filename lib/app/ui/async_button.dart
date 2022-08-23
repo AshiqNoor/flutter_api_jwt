@@ -1,4 +1,4 @@
-part of 'ui_utils.dart';
+part of ui;
 
 class AsyncButton extends StatelessWidget {
   const AsyncButton({

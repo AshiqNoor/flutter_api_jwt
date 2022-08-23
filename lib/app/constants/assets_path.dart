@@ -1,4 +1,4 @@
-part of 'app_constants.dart';
+part of constants;
 
 class Font {
   // static const _path = "assets/fonts";

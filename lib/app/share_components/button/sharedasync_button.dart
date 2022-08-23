@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_api_jwt/app/ui/ui_utils.dart';
-
-import 'package:flutter_api_jwt/app/utils/helper/app_helper.dart';
+part of shared_components;
 
 class SharedAsyncButton extends StatelessWidget {
   const SharedAsyncButton(

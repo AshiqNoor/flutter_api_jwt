@@ -1,4 +1,4 @@
-part of '../service.dart';
+part of services;
 
 class SharedService {
   static Future<bool> isLoggedIn() async {
@@ -28,6 +28,6 @@ class SharedService {
   static Future<void> logOut() async {
     var iskeyExists = await SharedPreferences.getInstance();
     iskeyExists.remove(AppConstant.token);
-    // Pages.goToSignIn();
+    Pages.goToSignIn();
   }
 }

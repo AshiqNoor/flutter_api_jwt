@@ -1,4 +1,4 @@
-part of 'ui_utils.dart';
+part of ui;
 
 class AppSnackbar {
   static void showMessage(String msg) {

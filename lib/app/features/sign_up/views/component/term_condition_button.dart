@@ -1,4 +1,4 @@
-part of '../screens/sign_up_screen.dart';
+part of sign_up;
 
 class _TermConditionButton extends StatelessWidget {
   const _TermConditionButton({

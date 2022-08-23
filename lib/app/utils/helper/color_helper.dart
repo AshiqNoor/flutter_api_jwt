@@ -1,4 +1,4 @@
-part of 'app_helper.dart';
+part of healper;
 
 const transparentCOLOR = Colors.transparent;
 const blueCOLOR = Colors.blue;

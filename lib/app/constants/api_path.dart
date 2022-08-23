@@ -1,4 +1,4 @@
-part of 'app_constants.dart';
+part of constants;
 
 class ApiPath {
   static const _baseUrl = "http://192.168.0.102:3000/api/v1";

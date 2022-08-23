@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of themes;
 
 /// all custom application theme
 class AppTheme {
